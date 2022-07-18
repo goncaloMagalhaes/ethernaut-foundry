@@ -37,6 +37,7 @@ contract RecoveryFactory is Level {
         //     - 0xc0 + 22, RLP
         //     - 0xd6, RLP
         //     - 0xd6, 0x94, sender, 0x01
+        // For more on RLP --> https://ethereum.org/en/developers/docs/data-structures-and-encoding/rlp/
         lostAddress = address(uint160(uint256(keccak256(abi.encodePacked(
             bytes1(0xd6),
             bytes1(0x94),
