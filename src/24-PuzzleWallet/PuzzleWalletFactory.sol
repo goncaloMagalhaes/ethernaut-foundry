@@ -11,7 +11,7 @@ contract PuzzleWalletFactory is Level {
     constructor() Owned(msg.sender) {}
     
     function createInstance(address) public payable override returns (address) {
-        require(msg.value >= 2 ether, "not enought ether");
+        require(msg.value >= 2 ether, "not enough ether");
         PuzzleWallet wallet = new PuzzleWallet();
         PuzzleProxy instance = new PuzzleProxy(
             adminAddress,
