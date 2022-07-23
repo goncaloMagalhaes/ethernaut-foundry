@@ -5,8 +5,6 @@ import "../Level.sol";
 import "./Dex.sol";
 
 contract DexFactory is Level {
-    uint public initialPrice;
-
     constructor() Owned(msg.sender) {}
     
     function createInstance(address _player) public payable override returns (address) {
