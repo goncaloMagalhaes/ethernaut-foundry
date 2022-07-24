@@ -37,6 +37,14 @@ contract MotorbikeTest is Test {
         engine.initialize();
         engine.upgradeToAndCall(address(attacker), abi.encodeWithSignature("initialize()"));
 
+        // At least for now, in Foundry one cannot mine txs in the middle of a test, so the effects
+        // of selfdestruct will only realize by the end of the test => this challenge cannot be tested
+        // in Foundry without emulation (setting contract code to "" with vm cheatcode). 
+        // This may change --> https://github.com/foundry-rs/foundry/issues/1543
+        
+        // Selfdestruct was called, emulate its behaviour in Foundry
+        vm.etch(address(engine), "");
+
         // Level submission
         bool levelSuccessfullyPassed = ethernaut.submitLevelInstance(payable(levelAddress)); 
         vm.stopPrank();

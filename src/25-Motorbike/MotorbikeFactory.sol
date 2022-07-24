@@ -15,11 +15,8 @@ contract MotorbikeFactory is Level {
     }
 
     function validateInstance(address payable _instance, address) override public returns (bool) {
-        // At least for now, in Foundry one cannot mine txs in the middle of a test, so the effects
-        // of selfdestruct will only realize by the end of the test => this challenge cannot be tested
-        // in Foundry. This may change --> https://github.com/foundry-rs/foundry/issues/1543
-        // (bool success, ) = _instance.call(abi.encodeWithSignature("horsePower()"));
-        return true;
+        (, bytes memory data) = _instance.call(abi.encodeWithSignature("horsePower()"));
+        return data.length == 0;
     }
 
     receive() external payable {}
